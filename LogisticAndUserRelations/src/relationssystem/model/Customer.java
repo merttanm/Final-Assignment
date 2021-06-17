@@ -10,10 +10,15 @@ package relationssystem.model;
  * @author MERT
  */
 public class Customer {
-    
+
     private Adress customerAdress;
     private String customerName;
     private String customerSurname;
+    private Long identityNo;
+    private Integer customerAge;
+    private String phoneNumber;
+    private boolean isValid; // yaşı 18 den buyukmu  
+    private int driverCarNumber;
 
     public Adress getCustomerAdress() {
         return customerAdress;
@@ -78,10 +83,5 @@ public class Customer {
     public void setDriverCarNumber(int driverCarNumber) {
         this.driverCarNumber = driverCarNumber;
     }
-    private Long identityNo;
-    private Integer customerAge;
-    private String phoneNumber;
-    private boolean isValid ; // yaşı 18 den buyukmu  
-    private int driverCarNumber;
-    
+
 }

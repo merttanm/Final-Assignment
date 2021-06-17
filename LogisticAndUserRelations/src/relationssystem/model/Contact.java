@@ -9,6 +9,6 @@ package relationssystem.model;
  *
  * @author MERT
  */
-public class Reservation {
+public class Contact {
     
 }

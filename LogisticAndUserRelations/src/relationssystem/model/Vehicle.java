@@ -9,61 +9,86 @@ package relationssystem.model;
  *
  * @author MERT
  */
-public class Vehicle {
+public abstract class Vehicle {
+
+ private String name;
+    private String color;
+    private Integer age;
+    private String model;
+    private boolean isReseved;
     
-    private String city;
-    private String district;
-    private String stress;
-    private String apartment;
-    private Integer apartmentId;
-    private Integer doorNo;
-
-    public String getCity() {
-        return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
-    }
-
-    public String getDistrict() {
-        return district;
-    }
-
-    public void setDistrict(String district) {
-        this.district = district;
-    }
-
-    public String getStress() {
-        return stress;
-    }
-
-    public void setStress(String stress) {
-        this.stress = stress;
-    }
-
-    public String getApartment() {
-        return apartment;
-    }
-
-    public void setApartment(String apartment) {
-        this.apartment = apartment;
-    }
-
-    public Integer getApartmentId() {
-        return apartmentId;
-    }
-
-    public void setApartmentId(Integer apartmentId) {
-        this.apartmentId = apartmentId;
-    }
-
-    public Integer getDoorNo() {
-        return doorNo;
-    }
-
-    public void setDoorNo(Integer doorNo) {
-        this.doorNo = doorNo;
-    }
     
+    double dailyCost, weeklyCost, monthlyCost;
+
+    public  abstract double calcRentPrice();
+    
+    public abstract boolean isCarReserved();
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
+    }
+
+    public Integer getAge() {
+        return age;
+    }
+
+    public void setAge(Integer age) {
+        this.age = age;
+    }
+
+    public String getModel() {
+        return model;
+    }
+
+    public void setModel(String model) {
+        this.model = model;
+    }
+
+    public double getDailyCost() {
+        return dailyCost;
+    }
+
+    public void setDailyCost(double dailyCost) {
+        this.dailyCost = dailyCost;
+    }
+
+    public double getWeeklyCost() {
+        return weeklyCost;
+    }
+
+    public void setWeeklyCost(double weeklyCost) {
+        this.weeklyCost = weeklyCost;
+    }
+
+    public double getMonthlyCost() {
+        return monthlyCost;
+    }
+
+    public void setMonthlyCost(double monthlyCost) {
+        this.monthlyCost = monthlyCost;
+    }
+
+    public boolean isIsReseved() {
+        return isReseved;
+    }
+
+    public void setIsReseved(boolean isReseved) {
+        this.isReseved = isReseved;
+    }
+
+  
+
+   
 }
