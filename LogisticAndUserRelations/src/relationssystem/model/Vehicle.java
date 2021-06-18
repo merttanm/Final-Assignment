@@ -11,17 +11,16 @@ package relationssystem.model;
  */
 public abstract class Vehicle {
 
- private String name;
+    private String name;
     private String color;
     private Integer age;
     private String model;
     private boolean isReseved;
-    
-    
+
     double dailyCost, weeklyCost, monthlyCost;
 
-    public  abstract double calcRentPrice();
-    
+    public abstract double calcRentPrice();
+
     public abstract boolean isCarReserved();
 
     public String getName() {
@@ -88,7 +87,4 @@ public abstract class Vehicle {
         this.isReseved = isReseved;
     }
 
-  
-
-   
 }

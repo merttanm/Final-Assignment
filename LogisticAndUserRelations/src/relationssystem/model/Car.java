@@ -11,7 +11,8 @@ import java.math.BigDecimal;
  *
  * @author MERT
  */
-public class Car extends Vehicle {
+
+public class Car extends Vehicle { /// Abstract Factory patterns
 
     private Integer numDay;
     private Integer numWeek;
@@ -51,8 +52,6 @@ public class Car extends Vehicle {
     public void setCarType(CarType carType) {
         this.carType = carType;
     }
-
- 
 
     public String getPlate() {
         return plate;
