@@ -11,6 +11,12 @@ package relationssystem.model;
  */
 public class Company {
 
+    private String companyId;
+    private Adress companyAdress;
+    private String companyName;
+    private Long taxNumber;
+    private String companyPhoneNumber;
+
     public String getCompanyId() {
         return companyId;
     }
@@ -43,27 +49,14 @@ public class Company {
         this.taxNumber = taxNumber;
     }
 
-    public Integer getCustomerAge() {
-        return customerAge;
+    public String getCompanyPhoneNumber() {
+        return companyPhoneNumber;
     }
 
-    public void setCustomerAge(Integer customerAge) {
-        this.customerAge = customerAge;
+    public void setCompanyPhoneNumber(String companyPhoneNumber) {
+        this.companyPhoneNumber = companyPhoneNumber;
     }
 
-    public String getCompanyNumber() {
-        return companyNumber;
-    }
-
-    public void setCompanyNumber(String companyNumber) {
-        this.companyNumber = companyNumber;
-    }
-
-    private String companyId;
-    private Adress companyAdress;
-    private String companyName;
-    private Long taxNumber;
-    private Integer customerAge;
-    private String companyNumber;
+  
 
 }
