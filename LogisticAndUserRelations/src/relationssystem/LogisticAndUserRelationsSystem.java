@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import relationssystem.model.Adress;
+import relationssystem.model.AutomotivFuel;
 import relationssystem.model.Car;
 import relationssystem.model.CarType;
 import relationssystem.model.Contact;
@@ -41,125 +42,133 @@ public class LogisticAndUserRelationsSystem {
         System.out.println("E Naklet Nakletmenin en kolay yolu");
         while (true) {
 
-            System.out.println("    1- Nakliyeci Listesi");
-            System.out.println("    2- Müşteri Listesi");
-            System.out.println("    3- Sana Uygun Nakliyeciler");
-            System.out.println("    4- Araç Ekle");
-            System.out.println("    5- Müşteri Ekle");
-            System.out.println("    6- Nakliyecimle İletişime Geç");
-            System.out.println("    7- Araç sil");
-            System.out.println("    8- Müşteri sil");
-            System.out.println("    9- Nakliyeci sil");
-            System.out.println("    10-Nakliyecimle İletişimi sonlandır");
+            System.out.println("    1 - ARAÇ LİSTESİ ");
+            System.out.println("    2 - MÜŞTERİ LİSTESİ");
+            System.out.println("    3 - SANA UYGUN NAKLİYECİLER");
+            System.out.println("    4 - ARAÇ EKLE");
+            System.out.println("    5 - MÜŞTERİ EKLE");
+            System.out.println("    6 - NAKLİYECİ İLE İLETİŞİM KUR");
+            System.out.println("    7 - ARAÇ SİL");
+            System.out.println("    8 - MÜŞTERİ SİL");
+            System.out.println("    9 - NAKLİYECİ SİL");
+            System.out.println("    10- TALEP SONLANDIR/İPTAL ET");
 
             System.out.println("    0- Çıkış");
             System.out.println(" YAPMAK İSTEDİĞİNİZ İŞLEM NUMARASINI GİRİNİZ... ");
 
-        
+            LogisticAndUserRelationsController controller = new LogisticAndUserRelationsController();
+            CarView carView = new CarView();
+            CustomerView customerView = new CustomerView();
+            ContactView contactView = new ContactView();
 
-        LogisticAndUserRelationsController controller = new LogisticAndUserRelationsController();
-        CarView carView = new CarView();
-        CustomerView customerView = new CustomerView();
-        ContactView contactView = new ContactView();
+            BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+            String s = br.readLine();
+            try {
+                int i = Integer.parseInt(s);
+                switch (i) {
+                    case 0:
+                        System.out.println("ÇIKIŞ YAPTINIZ...");
+                        System.exit(0);
+                    case 1:
+                        if (logisticAndUserRelations.carList.isEmpty()) {
+                            System.out.println("SİSTEME KAYITLI ARAÇ BULUNMAMAKTADIR...");
+                        } else {
+                            for (Car car : logisticAndUserRelations.carList) {
+                                controller.setCar(car);
+                                controller.setCarView(carView);
+                                controller.updateCarView();
+                            }
+                        }
+                        break;
+                    case 2:
+                        if (logisticAndUserRelations.customerList.isEmpty()) {
+                            System.out.println("SİSTEME KAYITLI MÜŞTERİ BULUNMAMAKTADIR...");
+                        } else {
+                            for (Customer customer : logisticAndUserRelations.customerList) {
+                                controller.setCustomer(customer);
+                                controller.setCustomerView(customerView);
+                                controller.updateCustomerView();
+                            }
+                        }
+                        break;
+                    case 3:
+                        if (logisticAndUserRelations.contactList.isEmpty()) {
+                            System.out.println("SİSTEMDE REZERVASYONLU ARAÇ BULUNMAMAKTADIR...");
+                        } else {
+                            for (Contact contact : logisticAndUserRelations.contactList) {
+                                controller.setContactView(contact);
+                                controller.setContactView(contactView);
+                                controller.updateContactView();
+                            }
+                        }
+                        break;
+                    case 4:
+                        logisticAndUserRelations.insertNewCarModel();
+                        break;
+                    case 5:
+                        logisticAndUserRelations.insertNewCustomerModel();
+                        break;
+                    case 6:
+                        logisticAndUserRelations.insertNewReservationModel();
+                        break;    
+                    case 7:
+                        logisticAndUserRelations.deleteCarFromList();
+                        break;
 
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        String s = br.readLine();
-        try {
-            int i = Integer.parseInt(s);
-            switch (i) {
-                case 0:
-                    System.out.println("ÇIKIŞ YAPTINIZ...");
+                    case 8:
+                        logisticAndUserRelations.deleteCustomerFromList();
+                        break;
+                    case 9:
+                        logisticAndUserRelations.deleteOrCancelReservation();
+                        break;
+                }
+                String answer = logisticAndUserRelations.checkToContinue();
+                if (!answer.equalsIgnoreCase("*")) {
+                    System.err.println("Uygulama Sonlandırılıyor ... ");
                     System.exit(0);
-                case 1:
-                    if (logisticAndUserRelations.carList.isEmpty()) {
-                        System.out.println("SİSTEME KAYITLI ARAÇ BULUNMAMAKTADIR...");
-                    } else {
-                        for (Car car : logisticAndUserRelations.carList) {
-                            controller.setCar(car);
-                            controller.setCarView(carView);
-                            controller.updateCarView();
-                        }
-                    }
-                    break;
-
-                case 4:
-                    logisticAndUserRelations.insertNewCarModel();
-                    break;
-                case 7:
-                    logisticAndUserRelations.deleteCarFromList();
-                    break;
-
-                case 2:
-                    if (logisticAndUserRelations.customerList.isEmpty()) {
-                        System.out.println("SİSTEME KAYITLI MÜŞTERİ BULUNMAMAKTADIR...");
-                    } else {
-                        for (Customer customer : logisticAndUserRelations.customerList) {
-                            controller.setCustomer(customer);
-                            controller.setCustomerView(customerView);
-                            controller.updateCustomerView();
-                        }
-                    }
-                    break;
-
-                case 8:
-                    logisticAndUserRelations.deleteCustomerFromList();
-                    break;
-                case 5:
-                    logisticAndUserRelations.insertNewCustomerModel();
-                    break;
-                case 9:
-                    logisticAndUserRelations.deleteOrCancelReservation();
-                    break;
-
-                case 3:
-                    if (logisticAndUserRelations.contactList.isEmpty()) {
-                        System.out.println("SİSTEMDE REZERVASYONLU ARAÇ BULUNMAMAKTADIR...");
-                    } else {
-                        for (Contact contact : logisticAndUserRelations.contactList) {
-                            controller.setContactView(contact);
-                            controller.setContactView(contactView);
-                            controller.updateContactView();
-                        }
-                    }
-                    break;
-                case 6:
-                    logisticAndUserRelations.insertNewReservationModel();
-                    break;
-            }
-            String answer = logisticAndUserRelations.checkToContinue();
-            if (!answer.equalsIgnoreCase("*")) {
-                System.err.println("Uygulama Sonlandırılıyor ... ");
+                }
+            } catch (NumberFormatException e) {
+                System.err.println("Hatalı Seçim Yapıldı!!!! Uygulama Sonlandırılıyor ... ");
                 System.exit(0);
             }
-        } catch (NumberFormatException e) {
-            System.err.println("Hatalı Seçim Yapıldı!!!! Uygulama Sonlandırılıyor ... ");
-            System.exit(0);
-        }
         }
     }
 
-
-public Car insertNewCarModel() throws IOException{
+    public Car insertNewCarModel() throws IOException {
         Car car = new Car();
         System.out.println("ARAÇ MARKASINI : ");
-        String name=readConsoleData();
+        String name = readConsoleData();
         car.setName(name);
         System.out.println("ARAÇ ŞASE NO : ");
-        int sase=Integer.parseInt(readConsoleData());
+        int sase = Integer.parseInt(readConsoleData());
         car.setSaseNo(sase);
-        
         System.out.println("ARAÇ MODELİ : ");
-        String model=readConsoleData();
+        String model = readConsoleData();
         car.setModel(model);
         System.out.println("ARAÇ PLAKA : ");
-        String plate=readConsoleData();
+        String plate = readConsoleData();
         car.setPlate(plate);
         System.out.println("ARAÇ RENGİ :");
-        String color=readConsoleData();
+        String color = readConsoleData();
         car.setColor(color);
         System.out.println("ARAÇ YAŞI :");
-        int age=Integer.parseInt(readConsoleData());
+        int age = Integer.parseInt(readConsoleData());
         car.setAge(age);
+                System.out.println("KAMYON TÜRÜ? [TRUCK/VAN]:");
+        String cartype=readConsoleData();
+        if("TRUCK".equalsIgnoreCase(cartype)){
+            car.setCarType(CarType.TRUCK);
+        }else{
+            car.setCarType(CarType.VAN);
+        }
+        
+        System.out.println("BENZİNLİ Mİ? [EVET/HAYIR]:");
+        String fuelOil=readConsoleData();
+        if("EVET".equalsIgnoreCase(fuelOil)){
+            car.setAutomotivFuel(AutomotivFuel.GASOLINE);
+        }else{
+            car.setAutomotivFuel(AutomotivFuel.DIESEL);
+        }
         car.setIsReseved(false);
         carList.add(car);
         return car;

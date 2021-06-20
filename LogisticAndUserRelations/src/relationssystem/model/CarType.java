@@ -10,7 +10,7 @@ package relationssystem.model;
  * @author MERT
  */
 public enum CarType {
-    truck, van 
+    TRUCK, VAN 
     /*
     Artaç envanterlerinde Kamyon ve kamyonet tipli araçlar bulunuyor,
     kamyonlar, çekiş gücü yüksek ve ağır yüklerin taşınmasında kullanılan

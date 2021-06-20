@@ -11,7 +11,6 @@ import java.math.BigDecimal;
  *
  * @author MERT
  */
-
 public class Car extends Vehicle { /// Abstract Factory patterns
 
     private Integer numDay;
@@ -20,6 +19,39 @@ public class Car extends Vehicle { /// Abstract Factory patterns
     private CarType carType;
     private String plate;
     private Integer saseNo;
+    private AutomotivFuel automotivFuel;
+
+    public AutomotivFuel getAutomotivFuel() {
+        return automotivFuel;
+    }
+
+    public void setAutomotivFuel(AutomotivFuel automotivFuel) {
+        this.automotivFuel = automotivFuel;
+    }
+
+    public double getDailyCost() {
+        return dailyCost;
+    }
+
+    public void setDailyCost(double dailyCost) {
+        this.dailyCost = dailyCost;
+    }
+
+    public double getWeeklyCost() {
+        return weeklyCost;
+    }
+
+    public void setWeeklyCost(double weeklyCost) {
+        this.weeklyCost = weeklyCost;
+    }
+
+    public double getMonthlyCost() {
+        return monthlyCost;
+    }
+
+    public void setMonthlyCost(double monthlyCost) {
+        this.monthlyCost = monthlyCost;
+    }
 
     public Integer getNumDay() {
         return numDay;
