@@ -14,7 +14,7 @@ import relationssystem.model.Contact;
  */
 public class ContactView {
    
-    public void printReservationDetailView(Contact contact){
+    public void printContactDetailView(Contact contact){
         System.out.println("REZEVASYON BİLGİLERİ *************");
         System.out.println("REZERVASYON YAPAN MÜŞTERİ BİLGİLERİ *****");
         System.out.println("       ADI : " + contact.getCustomer().getCustomerName());

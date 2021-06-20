@@ -15,6 +15,7 @@ import java.util.List;
 public class Contact {
 
     private Customer customer;
+    private Company company;
     private List<Car> carList;
     private Date rezervBeginDate;
     private Date rezervEndDate;
@@ -49,6 +50,14 @@ public class Contact {
 
     public Date getRezervEndDate() {
         return rezervEndDate;
+    }
+
+    public Company getCompany() {
+        return company;
+    }
+
+    public void setCompany(Company company) {
+        this.company = company;
     }
 
 }
