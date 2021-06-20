@@ -6,6 +6,7 @@
 package controller;
 
 import relationssystem.model.Car;
+import relationssystem.model.Company;
 import relationssystem.model.Contact;
 import relationssystem.model.Customer;
 import view.CarView;
@@ -22,6 +23,7 @@ public class LogisticAndUserRelationsController {
     private Car car;
     private Customer customer;
     private Contact contact;
+    private Company company;
 
     private CarView carView;
     private CustomerView customerView;
@@ -35,6 +37,9 @@ public class LogisticAndUserRelationsController {
 
     public LogisticAndUserRelationsController(CustomerView customerView) {
         this.customerView = customerView;
+    }
+     public LogisticAndUserRelationsController(FreightCompanyView reservationView) {
+        this.reservationView = reservationView;
     }
 
     public LogisticAndUserRelationsController(Contact contact, ContactView contactView) {
@@ -75,6 +80,30 @@ public class LogisticAndUserRelationsController {
         return customerView;
     }
 
+    public Contact getContact() {
+        return contact;
+    }
+
+    public void setContact(Contact contact) {
+        this.contact = contact;
+    }
+
+    public Company getCompany() {
+        return company;
+    }
+
+    public void setCompany(Company company) {
+        this.company = company;
+    }
+
+    public FreightCompanyView getReservationView() {
+        return reservationView;
+    }
+
+    public void setReservationView(FreightCompanyView reservationView) {
+        this.reservationView = reservationView;
+    }
+
     public void setCustomerView(CustomerView customerView) {
         this.customerView = customerView;
     }
@@ -93,6 +122,9 @@ public class LogisticAndUserRelationsController {
 
     public void updateCustomerView() {
         customerView.printCustomerDetail(customer);
+    }
+     public void updateCompanyView() {
+        reservationView.printCompanyDetail(company);
     }
 
     public void updateContactView() {

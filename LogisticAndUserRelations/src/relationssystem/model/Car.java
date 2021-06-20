@@ -11,7 +11,7 @@ import java.math.BigDecimal;
  *
  * @author MERT
  */
-public class Car extends Vehicle { /// Abstract Factory patterns
+public class Car extends Vehicle{ /// Abstract Factory patterns
 
     private Integer numDay;
     private Integer numWeek;
@@ -20,6 +20,15 @@ public class Car extends Vehicle { /// Abstract Factory patterns
     private String plate;
     private Integer saseNo;
     private AutomotivFuel automotivFuel;
+    private Company companyName;
+
+    public Company getCompanyName() {
+        return companyName;
+    }
+
+    public void setCompanyName(Company companyName) {
+        this.companyName = companyName;
+    }
 
     public AutomotivFuel getAutomotivFuel() {
         return automotivFuel;
@@ -113,6 +122,10 @@ public class Car extends Vehicle { /// Abstract Factory patterns
         } else {
             return false;
         }
+    }
+
+    public void setCompanyName(String companyName) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

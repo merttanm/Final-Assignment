@@ -18,12 +18,14 @@ import relationssystem.model.Adress;
 import relationssystem.model.AutomotivFuel;
 import relationssystem.model.Car;
 import relationssystem.model.CarType;
+import relationssystem.model.Company;
 import relationssystem.model.Contact;
 import relationssystem.model.Customer;
 import relationssystem.model.Vehicle;
 import view.CarView;
 import view.ContactView;
 import view.CustomerView;
+import view.FreightCompanyView;
 
 /**
  *
@@ -33,6 +35,7 @@ public class LogisticAndUserRelationsSystem {
 
     private static List<Car> carList = new ArrayList<Car>();
     private static List<Customer> customerList = new ArrayList<Customer>();
+    private static List<Company> companyList = new ArrayList<Company>();
     private static List<Contact> contactList = new ArrayList<Contact>();
 
     public static void main(String[] args) throws IOException {
@@ -44,14 +47,15 @@ public class LogisticAndUserRelationsSystem {
 
             System.out.println("    1 - ARAÇ LİSTESİ ");
             System.out.println("    2 - MÜŞTERİ LİSTESİ");
-            System.out.println("    3 - SANA UYGUN NAKLİYECİLER");
-            System.out.println("    4 - ARAÇ EKLE");
-            System.out.println("    5 - MÜŞTERİ EKLE");
-            System.out.println("    6 - NAKLİYECİ İLE İLETİŞİM KUR");
-            System.out.println("    7 - ARAÇ SİL");
-            System.out.println("    8 - MÜŞTERİ SİL");
-            System.out.println("    9 - NAKLİYECİ SİL");
-            System.out.println("    10- TALEP SONLANDIR/İPTAL ET");
+            System.out.println("    3 - NAKLİYECİ FİRMA LİSTESİ");
+            System.out.println("    4 - SANA UYGUN NAKLİYECİLER");
+            System.out.println("    5 - ARAÇ EKLE");
+            System.out.println("    6 - MÜŞTERİ EKLE");
+            System.out.println("    7 - NAKLİYE ŞİRKETİ EKLE");
+            System.out.println("    8 - ARAÇ SİL");
+            System.out.println("    9 - MÜŞTERİ SİL");
+            System.out.println("    10- NAKLİYECİ SİL");
+            System.out.println("    11- TALEP SONLANDIR/İPTAL ET");
 
             System.out.println("    0- Çıkış");
             System.out.println(" YAPMAK İSTEDİĞİNİZ İŞLEM NUMARASINI GİRİNİZ... ");
@@ -60,6 +64,7 @@ public class LogisticAndUserRelationsSystem {
             CarView carView = new CarView();
             CustomerView customerView = new CustomerView();
             ContactView contactView = new ContactView();
+            FreightCompanyView reservationView = new FreightCompanyView();
 
             BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
             String s = br.readLine();
@@ -92,33 +97,38 @@ public class LogisticAndUserRelationsSystem {
                         }
                         break;
                     case 3:
-                        if (logisticAndUserRelations.contactList.isEmpty()) {
-                            System.out.println("SİSTEMDE REZERVASYONLU ARAÇ BULUNMAMAKTADIR...");
+                        if (logisticAndUserRelations.companyList.isEmpty()) {
+                            System.out.println("SİSTEME KAYITLI ŞİRKET BULUNMAMAKTADIR...");
                         } else {
-                            for (Contact contact : logisticAndUserRelations.contactList) {
-                                controller.setContactView(contact);
-                                controller.setContactView(contactView);
-                                controller.updateContactView();
+                            for (Company company : logisticAndUserRelations.companyList) {
+                                controller.setCompany(company);
+                                controller.setReservationView(reservationView);
+                                controller.updateCompanyView();
                             }
                         }
                         break;
                     case 4:
-                        logisticAndUserRelations.insertNewCarModel();
+                        logisticAndUserRelations.insertNewReservationModel();
                         break;
                     case 5:
-                        logisticAndUserRelations.insertNewCustomerModel();
+                        logisticAndUserRelations.insertNewCarModel();
                         break;
                     case 6:
-                        logisticAndUserRelations.insertNewReservationModel();
-                        break;    
+                        logisticAndUserRelations.insertNewCustomerModel();
+                        break;
                     case 7:
+                        logisticAndUserRelations.insertNewCompanyModel();
+                        break;
+                    case 8:
                         logisticAndUserRelations.deleteCarFromList();
                         break;
-
-                    case 8:
+                    case 9:
                         logisticAndUserRelations.deleteCustomerFromList();
                         break;
-                    case 9:
+                    case 10:
+                        logisticAndUserRelations.deleteCompanyFromList();
+                        break;
+                    case 11:
                         logisticAndUserRelations.deleteOrCancelReservation();
                         break;
                 }
@@ -145,6 +155,9 @@ public class LogisticAndUserRelationsSystem {
         System.out.println("ARAÇ MODELİ : ");
         String model = readConsoleData();
         car.setModel(model);
+        /* System.out.println("ŞİRKET ADİ : ");
+        String companyName = readConsoleData();
+        car.setCompanyName(companyName);*/
         System.out.println("ARAÇ PLAKA : ");
         String plate = readConsoleData();
         car.setPlate(plate);
@@ -154,19 +167,19 @@ public class LogisticAndUserRelationsSystem {
         System.out.println("ARAÇ YAŞI :");
         int age = Integer.parseInt(readConsoleData());
         car.setAge(age);
-                System.out.println("KAMYON TÜRÜ? [TRUCK/VAN]:");
-        String cartype=readConsoleData();
-        if("TRUCK".equalsIgnoreCase(cartype)){
+        System.out.println("KAMYON TÜRÜ? [TRUCK/VAN]:");
+        String cartype = readConsoleData();
+        if ("TRUCK".equalsIgnoreCase(cartype)) {
             car.setCarType(CarType.TRUCK);
-        }else{
+        } else {
             car.setCarType(CarType.VAN);
         }
-        
+
         System.out.println("BENZİNLİ Mİ? [EVET/HAYIR]:");
-        String fuelOil=readConsoleData();
-        if("EVET".equalsIgnoreCase(fuelOil)){
+        String fuelOil = readConsoleData();
+        if ("EVET".equalsIgnoreCase(fuelOil)) {
             car.setAutomotivFuel(AutomotivFuel.GASOLINE);
-        }else{
+        } else {
             car.setAutomotivFuel(AutomotivFuel.DIESEL);
         }
         car.setIsReseved(false);
@@ -225,6 +238,30 @@ public class LogisticAndUserRelationsSystem {
             }
             count++;
         }
+    }
+
+    public static void deleteCompanyFromList() throws IOException {
+
+        /*
+        DOLDURMAYI BEKLİYOR
+         */
+    }
+
+    public static void insertNewCompanyModel() throws IOException {
+        Company company = new Company();
+
+        System.out.println("ŞİRKET ID : ");
+        String companyId = readConsoleData();
+        company.setCompanyId(companyId);
+
+        System.out.println("ŞİRKET ADI : ");
+        String companyName = readConsoleData();
+        company.setCompanyName(companyName);
+
+        company.setCompanyAdress(createAdress());
+
+        companyList.add(company);
+
     }
 
     public static void insertNewCustomerModel() throws IOException {
@@ -310,7 +347,7 @@ public class LogisticAndUserRelationsSystem {
         } else {
             contact = new Contact();
             if (!customer.isIsValid()) {
-                System.out.println("ŞAHSIN ARAÇ KULLANMA YETKİSİ BULUNMAMAKTADIR...");
+                System.out.println("ŞAHSIN REZERVASYONYAPMA YETKİSİ BULUNMAMAKTADIR...");
             } else {
                 contact.setCustomer(customer);
                 System.out.println(customer.getCustomerName() + " " + customer.getCustomerSurname() + "KAÇ ADET ARAÇ KİRALAYACAK ? :  ");

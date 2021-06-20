@@ -19,6 +19,8 @@ public class CarView {
         System.out.println("ARACIN MODELI **********" + car.getModel());
         System.out.println("ARCIN MARKASI **************" + car.getName());
         System.out.println("ARACIN RENGI ***********" + car.getColor());
+        System.out.println("ARACIN PLAKASI ***********" + car.getPlate());
+     //   System.out.println("ARACIN BAĞLI OLDUĞU ŞİRKET ***********" + car.getCompanyName());
         System.out.println("ARACIN DETAY BILGILERI*********");
         System.out.println("ARACIN VİTES TÜRÜ *********" + car.getCarType().name());
         System.out.println("ARACIN YAKIT TÜRÜ ***********" + car.getAutomotivFuel().name());

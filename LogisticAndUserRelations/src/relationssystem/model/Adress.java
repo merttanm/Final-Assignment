@@ -14,6 +14,9 @@ public class Adress {
     private String city;
     private String district;
     private String stress;
+    private String apartment;
+    private Integer apartmentId;
+    private Integer doorNo;
 
     public String getCity() {
         return city;
@@ -62,8 +65,5 @@ public class Adress {
     public void setDoorNo(Integer doorNo) {
         this.doorNo = doorNo;
     }
-    private String apartment;
-    private Integer apartmentId;
-    private Integer doorNo;
 
 }

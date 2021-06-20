@@ -20,6 +20,46 @@ public class Company {
     private int numberOfTruck;         // bunlar hangi türde araç ve bu araçların 
     private int numberOfvan;            // rezervasyonlu olanları hakkında işlemler için bana gerekli
     private boolean carTypeTruck;
+
+    public int getNumberOfVehicles() {
+        return numberOfVehicles;
+    }
+
+    public void setNumberOfVehicles(int numberOfVehicles) {
+        this.numberOfVehicles = numberOfVehicles;
+    }
+
+    public int getNumberOfTruck() {
+        return numberOfTruck;
+    }
+
+    public void setNumberOfTruck(int numberOfTruck) {
+        this.numberOfTruck = numberOfTruck;
+    }
+
+    public int getNumberOfvan() {
+        return numberOfvan;
+    }
+
+    public void setNumberOfvan(int numberOfvan) {
+        this.numberOfvan = numberOfvan;
+    }
+
+    public boolean isCarTypeTruck() {
+        return carTypeTruck;
+    }
+
+    public void setCarTypeTruck(boolean carTypeTruck) {
+        this.carTypeTruck = carTypeTruck;
+    }
+
+    public boolean isCarTypevan() {
+        return carTypevan;
+    }
+
+    public void setCarTypevan(boolean carTypevan) {
+        this.carTypevan = carTypevan;
+    }
     private boolean carTypevan;
 
     public String getCompanyId() {
