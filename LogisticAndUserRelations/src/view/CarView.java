@@ -20,7 +20,6 @@ public class CarView {
         System.out.println("ARCIN MARKASI **************" + car.getName());
         System.out.println("ARACIN RENGI ***********" + car.getColor());
         System.out.println("ARACIN DETAY BILGILERI*********");
-        System.out.println("ARACIN VİTES TÜRÜ *********" + car.getCarType().name());
         System.out.println("ARACIN YAKIT TÜRÜ ***********" + car.getCarType().name());
         System.out.println("ARAÇ REZERVLİ Mİ *********** " + (car.isCarReserved()==false  ? "HAYIR" : "EVET"));
         System.out.println("ARACIN ŞASE NUMARASI ***********" + car.getSaseNo());

@@ -17,7 +17,7 @@ import view.FreightCompanyView;
  *
  * @author MERT
  */
-public class LogisticAndUserRelations {
+public class LogisticAndUserRelationsController {
 
     private Car car;
     private Customer customer;
@@ -28,21 +28,21 @@ public class LogisticAndUserRelations {
     private ContactView contactView;
     private FreightCompanyView reservationView;
 
-    public LogisticAndUserRelations(Car car, CarView carView) {
+    public LogisticAndUserRelationsController(Car car, CarView carView) {
         this.car = car;
         this.carView = carView;
     }
 
-    public LogisticAndUserRelations(CustomerView customerView) {
+    public LogisticAndUserRelationsController(CustomerView customerView) {
         this.customerView = customerView;
     }
 
-    public LogisticAndUserRelations(Contact contact, ContactView contactView) {
+    public LogisticAndUserRelationsController(Contact contact, ContactView contactView) {
         this.contact = contact;
         this.contactView = contactView;
     }
 
-    public LogisticAndUserRelations() {
+    public LogisticAndUserRelationsController() {
     }
 
     public Car getCar() {
@@ -61,13 +61,7 @@ public class LogisticAndUserRelations {
         this.customer = customer;
     }
 
-    public Contact getReservation() {
-        return contact;
-    }
-
-    public void setReservation(Contact contact) {
-        this.contact = contact;
-    }
+   
 
     public CarView getCarView() {
         return carView;
@@ -85,11 +79,11 @@ public class LogisticAndUserRelations {
         this.customerView = customerView;
     }
 
-    public ContactView getReservationView() {
+    public ContactView getContactView() {
         return contactView;
     }
 
-    public void setReservationView(ContactView contactView) {
+    public void setContactView(ContactView contactView) {
         this.contactView = contactView;
     }
 
@@ -101,8 +95,12 @@ public class LogisticAndUserRelations {
         customerView.printCustomerDetail(customer);
     }
 
-    public void updateRezervaionView() {
+    public void updateContactView() {
         contactView.printContactDetailView(contact);
+    }
+
+    public void setContactView(Contact contact) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }
