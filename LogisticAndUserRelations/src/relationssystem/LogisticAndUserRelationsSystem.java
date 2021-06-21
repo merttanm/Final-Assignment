@@ -48,14 +48,15 @@ public class LogisticAndUserRelationsSystem {
             System.out.println("    1 - ARAÇ LİSTESİ ");
             System.out.println("    2 - MÜŞTERİ LİSTESİ");
             System.out.println("    3 - NAKLİYECİ FİRMA LİSTESİ");
-            System.out.println("    4 - SANA UYGUN NAKLİYECİLER");
-            System.out.println("    5 - ARAÇ EKLE");
-            System.out.println("    6 - MÜŞTERİ EKLE");
-            System.out.println("    7 - NAKLİYE ŞİRKETİ EKLE");
-            System.out.println("    8 - ARAÇ SİL");
-            System.out.println("    9 - MÜŞTERİ SİL");
-            System.out.println("    10- NAKLİYECİ SİL");
-            System.out.println("    11- TALEP SONLANDIR/İPTAL ET");
+            System.out.println("    4 - REZERVASYONLARIM");
+            System.out.println("    5 - NAKLİYECİDEN REZERVASYON OLUŞTUR");
+            System.out.println("    6 - ARAÇ EKLE");
+            System.out.println("    7 - MÜŞTERİ EKLE");
+            System.out.println("    8 - NAKLİYE ŞİRKETİ EKLE");
+            System.out.println("    9 - ARAÇ SİL");
+            System.out.println("    10- MÜŞTERİ SİL");
+            System.out.println("    11- NAKLİYECİ SİL");
+            System.out.println("    12- TALEP SONLANDIR/İPTAL ET");
 
             System.out.println("    0- Çıkış");
             System.out.println(" YAPMAK İSTEDİĞİNİZ İŞLEM NUMARASINI GİRİNİZ... ");
@@ -108,27 +109,38 @@ public class LogisticAndUserRelationsSystem {
                         }
                         break;
                     case 4:
-                        logisticAndUserRelations.insertNewReservationModel();
+                        if (logisticAndUserRelations.contactList.isEmpty()) {
+                            System.out.println("SİSTEME KAYITLI REZERVASYON BULUNMAMAKTADIR...");
+                        } else {
+                            for (Contact contact : logisticAndUserRelations.contactList) {
+                                controller.setContact(contact);
+                                controller.setContactView(contactView);
+                                controller.updateContactView();
+                            }
+                        }
                         break;
                     case 5:
-                        logisticAndUserRelations.insertNewCarModel();
+                        logisticAndUserRelations.insertNewReservationModel();
                         break;
                     case 6:
-                        logisticAndUserRelations.insertNewCustomerModel();
+                        logisticAndUserRelations.insertNewCarModel();
                         break;
                     case 7:
-                        logisticAndUserRelations.insertNewCompanyModel();
+                        logisticAndUserRelations.insertNewCustomerModel();
                         break;
                     case 8:
-                        logisticAndUserRelations.deleteCarFromList();
+                        logisticAndUserRelations.insertNewCompanyModel();
                         break;
                     case 9:
-                        logisticAndUserRelations.deleteCustomerFromList();
+                        logisticAndUserRelations.deleteCarFromList();
                         break;
                     case 10:
-                        logisticAndUserRelations.deleteCompanyFromList();
+                        logisticAndUserRelations.deleteCustomerFromList();
                         break;
                     case 11:
+                        logisticAndUserRelations.deleteCompanyFromList();
+                        break;
+                    case 12:
                         logisticAndUserRelations.deleteOrCancelReservation();
                         break;
                 }
@@ -257,20 +269,33 @@ public class LogisticAndUserRelationsSystem {
         System.out.println("ŞİRKET ADI : ");
         String companyName = readConsoleData();
         company.setCompanyName(companyName);
-        
+
         System.out.println("VERGİ NUMARASI : ");
         Long taxNumber = Long.parseLong(readConsoleData());
         company.setTaxNumber(taxNumber);
-        
+
         System.out.println("TELEFON NUMARASI : ");
         String phoneNumber = readConsoleData();
         company.setCompanyPhoneNumber(phoneNumber);
 
+        System.out.println("ŞİRKETİN ENVANTERİNDE KAÇ ARAÇ VAR : ");
+        String numberOfVehicles = readConsoleData();
+        company.setNumberOfVehicles(numberOfVehicles);
+
         company.setCompanyAdress(createAdress());
+        System.out.println("ARAÇ EKLEMEK İSTER MİSİNİZ? [EVET/HAYIR]:");
+        String addCar = readConsoleData();
+        if ("EVET".equalsIgnoreCase(addCar)) {
+            for (int i = 0; i < numberOfVehicles.length(); i++) {
+                company.setCompanyCar(insertNewCarModel());
+            }
+        } else {
+            System.out.println("ŞİRKET ENVANTERİNE ARAÇ EKLENMEDİ");
+        }
+
         company.setCompanyCar(insertNewCarModel());
 
         companyList.add(company);
-    
 
     }
 
@@ -352,8 +377,13 @@ public class LogisticAndUserRelationsSystem {
         System.out.println("REZERVASYONU YAPACAK MÜŞTERİ KİMLİK NUMARASINI GİRİN :  ");
         Long reservationCustomerIdentityNumber = Long.parseLong(readConsoleData());
         Customer customer = findCustomer(reservationCustomerIdentityNumber);
-        if (customer == null) {
-            System.out.println("GİRİLEN BİLGİYE AİT MÜŞTERİ BULUNMAMAKTADIR...");
+
+        System.out.println("REZERVASYON YAPMAK İSTEDİĞİNİZ ŞİRKET ADI :  ");
+        String reservationCompanyName = readConsoleData();
+        Company company = findCompany(reservationCompanyName);
+
+        if (customer == null && company == null) {
+            System.out.println("GİRİLEN BİLGİYE AİT MÜŞTERİ BULUNMAMAKTADIR VEYA BÖYLE BİR ŞİRKET YOKTUR");
         } else {
             contact = new Contact();
             if (!customer.isIsValid()) {
@@ -363,17 +393,18 @@ public class LogisticAndUserRelationsSystem {
                 System.out.println(customer.getCustomerName() + " " + customer.getCustomerSurname() + "KAÇ ADET ARAÇ KİRALAYACAK ? :  ");
                 Integer countOfRentCar = Integer.parseInt(readConsoleData());
 
-                System.out.println("REZERVASYON BAŞLANGIÇ TARİHİNİ GİRİNİZ  [DD/MM/YYYY]  : ");
+                System.out.println("REZERVASYON BAŞLANGIÇ TARİHİNİ GİRİNİZ  [YYYY-MM-DD]  : ");
                 Date reservationBeginDate = Date.valueOf(readConsoleData());
                 contact.setRezervBeginDate(reservationBeginDate);
 
-                System.out.println("REZERVASYON BAŞLANGIÇ TARİHİNİ GİRİNİZ  [DD/MM/YYYY]  : ");
+                System.out.println("REZERVASYON BAŞLANGIÇ TARİHİNİ GİRİNİZ  [YYYY-MM-DD]  : ");
                 Date reservationEndDate = Date.valueOf(readConsoleData());
                 contact.setRezervEndDate(reservationEndDate);
 
                 Long[] dayWeekMonth = seperateReservationDateAndSetToCar(reservationBeginDate, reservationEndDate);
 
                 List<Car> rezervCarList = new ArrayList<>();
+                List<Company> rezervCompanyList = new ArrayList<>();
                 for (int i = 0; i < countOfRentCar; i++) {
                     System.out.println(i + ".  ARACIN PLAKASI :  ");
                     String plate = readConsoleData();
@@ -387,6 +418,7 @@ public class LogisticAndUserRelationsSystem {
                         car.setWeeklyCost(7);
                         car.setMonthlyCost(5);
                         rezervCarList.add(car);
+                        rezervCompanyList.add(company);
                     } else {
                         System.out.println(plate + " PLAKALI ARAÇ BULUNAMADI. LÜTFEN REZERV EDİLMEDİĞİNDEN EMİN OLUN...");
                     }
@@ -423,6 +455,17 @@ public class LogisticAndUserRelationsSystem {
         return null;
     }
 
+    public static Company findCompany(String reservationCompanyName) {
+        int i = 0;
+        for (Company company : companyList) {
+            if (company.getCompanyName().equals(reservationCompanyName)) {
+                return companyList.get(i);
+            }
+            i++;
+        }
+        return null;
+    }
+
     public static Car findNotReservedCar(String plate) {
         for (Car car : carList) {
             if (car.isIsReseved() == false && car.getPlate().equals(plate)) {
@@ -442,4 +485,27 @@ public class LogisticAndUserRelationsSystem {
         }
         return null;
     }
+
+    public static class Singleton {
+
+        private static Integer instanceCount;
+
+        private Singleton() {
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            instanceCount++;
+        }
+
+        public static Singleton getInstance() {
+            return new Singleton();
+        }
+
+        public static int getInstanceCount() {
+            return instanceCount;
+        }
+    }
+
 }

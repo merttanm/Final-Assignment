@@ -35,12 +35,18 @@ public class LogisticAndUserRelationsController {
         this.carView = carView;
     }
 
+    /*  ------Değiştim------
     public LogisticAndUserRelationsController(CustomerView customerView) {
         this.customerView = customerView;
+    } 
+     */
+    // Builder pattern kullandım
+    public static Builder builder() {
+        return new LogisticAndUserRelationsController.Builder();
     }
 
-    public LogisticAndUserRelationsController(Company company,FreightCompanyView freightCompanyView) {
-        this.company=company;
+    public LogisticAndUserRelationsController(Company company, FreightCompanyView freightCompanyView) {
+        this.company = company;
         this.freightCompanyView = freightCompanyView;
     }
 
@@ -103,6 +109,7 @@ public class LogisticAndUserRelationsController {
     public void setFreightCompanyView(FreightCompanyView freightCompanyView) {
         this.freightCompanyView = freightCompanyView;
     }
+
     public void setFreightCompanyView(Company company) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
@@ -114,8 +121,6 @@ public class LogisticAndUserRelationsController {
     public ContactView getContactView() {
         return contactView;
     }
-
-    
 
     public void updateCarView() {
         carView.printCarDetail(car);
@@ -136,8 +141,26 @@ public class LogisticAndUserRelationsController {
     public void setContactView(Contact contact) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
     public void setContactView(ContactView contactView) {
         this.contactView = contactView;
+    }
+
+    public static class Builder {
+
+        private final LogisticAndUserRelationsController instance = new LogisticAndUserRelationsController();
+
+        private Builder() {
+        }
+
+        public Builder from(CustomerView customerView) {
+            instance.customerView = customerView;
+            return this;
+        }
+
+        public LogisticAndUserRelationsController build() {
+            return instance;
+        }
     }
 
 }

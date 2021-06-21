@@ -31,6 +31,8 @@ public class FreightCompanyView {
             System.out.println("    ARAÇ MODEL   :"  + car.getModel());
             System.out.println("    ARAÇ RENK    :"  + car.getColor());
             System.out.println("    ARAÇ PLAKA   :"  +car.getPlate());
+            System.out.println("    ARAÇ YAKIT   :"  +car.getAutomotivFuel());
+            System.out.println("    ARAÇ TİPİ   :"  +car.getCarType());
         }
         else
             System.out.println("null");

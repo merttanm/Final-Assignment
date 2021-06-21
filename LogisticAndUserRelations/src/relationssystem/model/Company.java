@@ -19,7 +19,7 @@ public class Company {
     private String companyName;
     private Long taxNumber;
     private String companyPhoneNumber;
-    private int numberOfVehicles;     // Şirketin Araçlarının kaç aracı var  
+    private String numberOfVehicles;     // Şirketin Araçlarının kaç aracı var  
     private int numberOfTruck;         // bunlar hangi türde araç ve bu araçların 
     private int numberOfvan;            // rezervasyonlu olanları hakkında işlemler için bana gerekli
     private boolean carTypeTruck;
@@ -33,11 +33,11 @@ public class Company {
         this.carList = carList;
     }
 
-    public int getNumberOfVehicles() {
+    public String getNumberOfVehicles() {
         return numberOfVehicles;
     }
 
-    public void setNumberOfVehicles(int numberOfVehicles) {
+    public void setNumberOfVehicles(String numberOfVehicles) {
         this.numberOfVehicles = numberOfVehicles;
     }
 
