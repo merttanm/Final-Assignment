@@ -28,7 +28,7 @@ public class LogisticAndUserRelationsController {
     private CarView carView;
     private CustomerView customerView;
     private ContactView contactView;
-    private FreightCompanyView reservationView;
+    private FreightCompanyView freightCompanyView;
 
     public LogisticAndUserRelationsController(Car car, CarView carView) {
         this.car = car;
@@ -38,8 +38,10 @@ public class LogisticAndUserRelationsController {
     public LogisticAndUserRelationsController(CustomerView customerView) {
         this.customerView = customerView;
     }
-     public LogisticAndUserRelationsController(FreightCompanyView reservationView) {
-        this.reservationView = reservationView;
+
+    public LogisticAndUserRelationsController(Company company,FreightCompanyView freightCompanyView) {
+        this.company=company;
+        this.freightCompanyView = freightCompanyView;
     }
 
     public LogisticAndUserRelationsController(Contact contact, ContactView contactView) {
@@ -65,8 +67,6 @@ public class LogisticAndUserRelationsController {
     public void setCustomer(Customer customer) {
         this.customer = customer;
     }
-
-   
 
     public CarView getCarView() {
         return carView;
@@ -96,12 +96,15 @@ public class LogisticAndUserRelationsController {
         this.company = company;
     }
 
-    public FreightCompanyView getReservationView() {
-        return reservationView;
+    public FreightCompanyView getFreightCompanyView() {
+        return freightCompanyView;
     }
 
-    public void setReservationView(FreightCompanyView reservationView) {
-        this.reservationView = reservationView;
+    public void setFreightCompanyView(FreightCompanyView freightCompanyView) {
+        this.freightCompanyView = freightCompanyView;
+    }
+    public void setFreightCompanyView(Company company) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     public void setCustomerView(CustomerView customerView) {
@@ -112,9 +115,7 @@ public class LogisticAndUserRelationsController {
         return contactView;
     }
 
-    public void setContactView(ContactView contactView) {
-        this.contactView = contactView;
-    }
+    
 
     public void updateCarView() {
         carView.printCarDetail(car);
@@ -123,8 +124,9 @@ public class LogisticAndUserRelationsController {
     public void updateCustomerView() {
         customerView.printCustomerDetail(customer);
     }
-     public void updateCompanyView() {
-        reservationView.printCompanyDetail(company);
+
+    public void updateCompanyView() {
+        freightCompanyView.printCompanyDetailView(company);
     }
 
     public void updateContactView() {
@@ -133,6 +135,9 @@ public class LogisticAndUserRelationsController {
 
     public void setContactView(Contact contact) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    public void setContactView(ContactView contactView) {
+        this.contactView = contactView;
     }
 
 }

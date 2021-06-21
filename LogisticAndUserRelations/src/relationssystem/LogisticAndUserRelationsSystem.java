@@ -102,7 +102,7 @@ public class LogisticAndUserRelationsSystem {
                         } else {
                             for (Company company : logisticAndUserRelations.companyList) {
                                 controller.setCompany(company);
-                                controller.setReservationView(reservationView);
+                                controller.setFreightCompanyView(reservationView);
                                 controller.updateCompanyView();
                             }
                         }
@@ -144,7 +144,7 @@ public class LogisticAndUserRelationsSystem {
         }
     }
 
-    public Car insertNewCarModel() throws IOException {
+    public static Car insertNewCarModel() throws IOException {
         Car car = new Car();
         System.out.println("ARAÇ MARKASINI : ");
         String name = readConsoleData();
@@ -257,10 +257,20 @@ public class LogisticAndUserRelationsSystem {
         System.out.println("ŞİRKET ADI : ");
         String companyName = readConsoleData();
         company.setCompanyName(companyName);
+        
+        System.out.println("VERGİ NUMARASI : ");
+        Long taxNumber = Long.parseLong(readConsoleData());
+        company.setTaxNumber(taxNumber);
+        
+        System.out.println("TELEFON NUMARASI : ");
+        String phoneNumber = readConsoleData();
+        company.setCompanyPhoneNumber(phoneNumber);
 
         company.setCompanyAdress(createAdress());
+        company.setCompanyCar(insertNewCarModel());
 
         companyList.add(company);
+    
 
     }
 

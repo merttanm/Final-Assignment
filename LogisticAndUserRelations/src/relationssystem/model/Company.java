@@ -5,6 +5,8 @@
  */
 package relationssystem.model;
 
+import java.util.List;
+
 /**
  *
  * @author MERT
@@ -13,6 +15,7 @@ public class Company {
 
     private String companyId;
     private Adress companyAdress;
+    private Car companyCar; //ekledim dursun 21.06
     private String companyName;
     private Long taxNumber;
     private String companyPhoneNumber;
@@ -20,6 +23,15 @@ public class Company {
     private int numberOfTruck;         // bunlar hangi türde araç ve bu araçların 
     private int numberOfvan;            // rezervasyonlu olanları hakkında işlemler için bana gerekli
     private boolean carTypeTruck;
+    private List<Car> carList;
+    
+    public List<Car> getCarList() {
+        return carList;
+    }
+
+    public void setCarList(List<Car> carList) {
+        this.carList = carList;
+    }
 
     public int getNumberOfVehicles() {
         return numberOfVehicles;
@@ -77,6 +89,17 @@ public class Company {
     public void setCompanyAdress(Adress companyAdress) {
         this.companyAdress = companyAdress;
     }
+
+    public Car getCompanyCar() {
+        return companyCar;
+    }
+
+    public void setCompanyCar(Car companyCar) {
+        this.companyCar = companyCar;
+    }
+    
+     
+    
 
     public String getCompanyName() {
         return companyName;
