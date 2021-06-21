@@ -61,11 +61,12 @@ public class LogisticAndUserRelationsSystem {
             System.out.println("    0- Çıkış");
             System.out.println(" YAPMAK İSTEDİĞİNİZ İŞLEM NUMARASINI GİRİNİZ... ");
 
-            LogisticAndUserRelationsController controller = new LogisticAndUserRelationsController();
-            CarView carView = new CarView();
-            CustomerView customerView = new CustomerView();
-            ContactView contactView = new ContactView();
-            FreightCompanyView reservationView = new FreightCompanyView();
+          LogisticAndUserRelationsController controller = LogisticAndUserRelationsController.builder()
+                    .setCarView(new CarView())
+                    .setCustomerView(new CustomerView())
+                    .setContactView(new ContactView())
+                    .setFreightCompanyView(new FreightCompanyView())
+                    .build();
 
             BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
             String s = br.readLine();
@@ -81,7 +82,6 @@ public class LogisticAndUserRelationsSystem {
                         } else {
                             for (Car car : logisticAndUserRelations.carList) {
                                 controller.setCar(car);
-                                controller.setCarView(carView);
                                 controller.updateCarView();
                             }
                         }
@@ -92,7 +92,6 @@ public class LogisticAndUserRelationsSystem {
                         } else {
                             for (Customer customer : logisticAndUserRelations.customerList) {
                                 controller.setCustomer(customer);
-                                controller.setCustomerView(customerView);
                                 controller.updateCustomerView();
                             }
                         }
@@ -103,7 +102,6 @@ public class LogisticAndUserRelationsSystem {
                         } else {
                             for (Company company : logisticAndUserRelations.companyList) {
                                 controller.setCompany(company);
-                                controller.setFreightCompanyView(reservationView);
                                 controller.updateCompanyView();
                             }
                         }
@@ -114,7 +112,6 @@ public class LogisticAndUserRelationsSystem {
                         } else {
                             for (Contact contact : logisticAndUserRelations.contactList) {
                                 controller.setContact(contact);
-                                controller.setContactView(contactView);
                                 controller.updateContactView();
                             }
                         }

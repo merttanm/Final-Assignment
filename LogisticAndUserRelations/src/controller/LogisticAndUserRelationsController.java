@@ -30,56 +30,58 @@ public class LogisticAndUserRelationsController {
     private ContactView contactView;
     private FreightCompanyView freightCompanyView;
 
-    public LogisticAndUserRelationsController(Car car, CarView carView) {
-        this.car = car;
-        this.carView = carView;
-    }
-
-    /*  ------Değiştim------
-    public LogisticAndUserRelationsController(CustomerView customerView) {
-        this.customerView = customerView;
-    } 
-     */
-    // Builder pattern kullandım
-    public static Builder builder() {
+    public static LogisticAndUserRelationsController.Builder builder() {
         return new LogisticAndUserRelationsController.Builder();
     }
 
-    public LogisticAndUserRelationsController(Company company, FreightCompanyView freightCompanyView) {
-        this.company = company;
-        this.freightCompanyView = freightCompanyView;
+    public LogisticAndUserRelationsController(Car car, Customer customer ,Contact contact, Company company ,CarView carView ,CustomerView customerView ,ContactView contactView , FreightCompanyView freightCompanyView) {
+        setCar(car);
+        setCustomer(customer);
+        setCompany(company);
+        setContact(contact);
+        setCarView(carView);
+        setCustomerView(customerView);
+        setContactView(contactView);
+        setFreightCompanyView(freightCompanyView);
     }
-
-    public LogisticAndUserRelationsController(Contact contact, ContactView contactView) {
-        this.contact = contact;
-        this.contactView = contactView;
-    }
-
-    public LogisticAndUserRelationsController() {
-    }
-
-    public Car getCar() {
-        return car;
-    }
-
     public void setCar(Car car) {
         this.car = car;
-    }
-
-    public Customer getCustomer() {
-        return customer;
     }
 
     public void setCustomer(Customer customer) {
         this.customer = customer;
     }
 
-    public CarView getCarView() {
-        return carView;
+    public void setContact(Contact contact) {
+        this.contact = contact;
+    }
+
+    public void setCompany(Company company) {
+        this.company = company;
     }
 
     public void setCarView(CarView carView) {
         this.carView = carView;
+    }
+
+    public void setCustomerView(CustomerView customerView) {
+        this.customerView = customerView;
+    }
+
+    public void setFreightCompanyView(FreightCompanyView freightCompanyView) {
+        this.freightCompanyView = freightCompanyView;
+    }
+
+    public Car getCar() {
+        return car;
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public CarView getCarView() {
+        return carView;
     }
 
     public CustomerView getCustomerView() {
@@ -90,33 +92,15 @@ public class LogisticAndUserRelationsController {
         return contact;
     }
 
-    public void setContact(Contact contact) {
-        this.contact = contact;
-    }
-
     public Company getCompany() {
         return company;
     }
 
-    public void setCompany(Company company) {
-        this.company = company;
-    }
 
     public FreightCompanyView getFreightCompanyView() {
         return freightCompanyView;
     }
 
-    public void setFreightCompanyView(FreightCompanyView freightCompanyView) {
-        this.freightCompanyView = freightCompanyView;
-    }
-
-    public void setFreightCompanyView(Company company) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    public void setCustomerView(CustomerView customerView) {
-        this.customerView = customerView;
-    }
 
     public ContactView getContactView() {
         return contactView;
@@ -138,29 +122,69 @@ public class LogisticAndUserRelationsController {
         contactView.printContactDetailView(contact);
     }
 
-    public void setContactView(Contact contact) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
     public void setContactView(ContactView contactView) {
         this.contactView = contactView;
     }
 
     public static class Builder {
 
-        private final LogisticAndUserRelationsController instance = new LogisticAndUserRelationsController();
+        private Car car;
+        private Customer customer;
+        private Contact contact;
+        private Company company;
 
-        private Builder() {
+        private CarView carView;
+        private CustomerView customerView;
+        private ContactView contactView;
+        private FreightCompanyView freightCompanyView;
+
+
+        Builder() {
         }
 
-        public Builder from(CustomerView customerView) {
-            instance.customerView = customerView;
+        public Builder setContactView(ContactView contactView) {
+            this.contactView = contactView;
+            return this;
+        }
+
+        public Builder setFreightCompanyView(FreightCompanyView freightCompanyView) {
+            this.freightCompanyView = freightCompanyView;
+            return this;
+        }
+
+        public Builder setCompany(Company company) {
+            this.company = company;
+            return this;
+        }
+
+        public Builder setCarView(CarView carView) {
+            this.carView = carView;
+            return this;
+        }
+        public Builder setCustomerView(CustomerView customerView) {
+            this.customerView = customerView;
+            return this;
+        }
+
+        public Builder setCar(Car car) {
+            this.car = car;
+            return this;
+        }
+
+        public Builder setCustomer(Customer customer) {
+            this.customer = customer;
+            return this;
+        }
+
+        public Builder setContact(Contact contact) {
+            this.contact = contact;
             return this;
         }
 
         public LogisticAndUserRelationsController build() {
-            return instance;
+            return new LogisticAndUserRelationsController(this.car,this.customer, this.contact, this.company, this.carView,this.customerView, this.contactView, this.freightCompanyView);
         }
+
     }
 
 }
