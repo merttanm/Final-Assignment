@@ -6,6 +6,8 @@
 package relationssystem.model;
 
 import java.util.List;
+import relationssystem.LogisticAndUserRelationsSystem;
+import relationssystem.LogisticAndUserRelationsSystem.CareTaker;
 
 /**
  *
@@ -24,6 +26,8 @@ public class Company {
     private int numberOfvan;            // rezervasyonlu olanları hakkında işlemler için bana gerekli
     private boolean carTypeTruck;
     private List<Car> carList;
+    public String city;
+    public Adress saveCity;
     
     public List<Car> getCarList() {
         return carList;
@@ -124,5 +128,10 @@ public class Company {
     public void setCompanyPhoneNumber(String companyPhoneNumber) {
         this.companyPhoneNumber = companyPhoneNumber;
     }
+
+    public Adress saveCity(CareTaker careTaker , int i) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 
 }

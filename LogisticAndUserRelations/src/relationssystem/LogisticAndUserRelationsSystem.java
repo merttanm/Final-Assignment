@@ -37,6 +37,7 @@ public class LogisticAndUserRelationsSystem {
     private static List<Customer> customerList = new ArrayList<Customer>();
     private static List<Company> companyList = new ArrayList<Company>();
     private static List<Contact> contactList = new ArrayList<Contact>();
+    private static ArrayList<Adress> states = new ArrayList();
 
     public static void main(String[] args) throws IOException {
 
@@ -60,8 +61,8 @@ public class LogisticAndUserRelationsSystem {
 
             System.out.println("    0- Çıkış");
             System.out.println(" YAPMAK İSTEDİĞİNİZ İŞLEM NUMARASINI GİRİNİZ... ");
-
-          LogisticAndUserRelationsController controller = LogisticAndUserRelationsController.builder()
+            // Builder Patterni sadece bıurada kulandım CarView ,CustomerView, ContactView, FreightCompanyView
+            LogisticAndUserRelationsController controller = LogisticAndUserRelationsController.builder()
                     .setCarView(new CarView())
                     .setCustomerView(new CustomerView())
                     .setContactView(new ContactView())
@@ -338,6 +339,16 @@ public class LogisticAndUserRelationsSystem {
         return s;
     }
 
+    public static Adress createCountryOfCarriers() throws IOException {
+        Company o = new Company();
+        String city=readConsoleData();
+        o.city =city;
+        CareTaker c = new CareTaker();
+        c.add(o.saveCity());
+        System.out.println(o.saveCity(c, 0).getState());
+        return null;
+    }
+
     public static Adress createAdress() throws IOException {
         Adress adress = new Adress();
 
@@ -483,26 +494,16 @@ public class LogisticAndUserRelationsSystem {
         return null;
     }
 
-    public static class Singleton {
+    public static class CareTaker {
 
-        private static Integer instanceCount;
+        ArrayList<Adress> states = new ArrayList();
 
-        private Singleton() {
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            instanceCount++;
+        void add(Adress m) {
+            states.add(m);
         }
 
-        public static Singleton getInstance() {
-            return new Singleton();
-        }
-
-        public static int getInstanceCount() {
-            return instanceCount;
+        Adress get(int i) {
+            return states.get(i);
         }
     }
-
 }
