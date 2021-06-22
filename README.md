@@ -3,7 +3,7 @@
   Software mühendisliği dersi final ödevinde bana verilmiş olan nakliyeci ve kullanıcı iletişimi konulu
 ödevi Java platformunda dizayn desenleri ve dizayn politikaları prensiplerine bağlı kalarak tasarladım.
 Projemde yinelemeli / artımlı geliştirme metodolojini uyarlamaya çalıştım. Ders içinde öğrendiklerimden
-bir tanesi de hangi metodolojiyi kullanırsak kullanalım onu projeye uyarlamazsak başarılı olamayacağı-
+bir tanesi de hangi metodolojiyi kullanırsak kullanalım onu projeye uyarlamazsak başarılı olamayacağı
 mızdı bu sebepten dolayı belirlemiş olduğum bir metodolojiye uyarak ilerledim.
   Projeye başlarken her şeyden önce aktif olarak kullanmakta olduğum GitHub hesabımda proje dosyamı 
 oluşturdum. Bunu yapmamın sebebi ise günlük ilerlemelerimi istatistik ve raporlar haline görmek, projenin
