@@ -26,7 +26,6 @@ import view.CarView;
 import view.ContactView;
 import view.CustomerView;
 import view.FreightCompanyView;
-
 /**
  *
  * @author MERT
@@ -338,11 +337,11 @@ public class LogisticAndUserRelationsSystem {
         String s = br.readLine();
         return s;
     }
-
+    //  Memento Pattern burada kullanıyorum
     public static Adress createCountryOfCarriers() throws IOException {
         Company o = new Company();
-        String city=readConsoleData();
-        o.city =city;
+        String city = readConsoleData();
+        o.city = city;
         CareTaker c = new CareTaker();
         c.add(o.saveCity());
         System.out.println(o.saveCity(c, 0).getState());
